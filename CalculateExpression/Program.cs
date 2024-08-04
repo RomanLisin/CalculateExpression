@@ -81,27 +81,37 @@ namespace RegexpTwoOperand
 					double right = Convert.ToDouble(rightOperand);
 					double result = 0;
 
-					switch (operatorSymbol)
+					try
 					{
-						case "^":
-							result = Math.Pow(left, right);
-							break;
-						case "*":
-							result = left * right;
-							break;
-						case "/":
-							result = left / right;
-							break;
-						case "%":
-							result = left % right;
-							break;
-						case "+":
-							result = left + right;
-							break;
-						case "-":
-							result = left - right;
-							break;
+						switch (operatorSymbol)
+						{
+							case "^":
+								result = Math.Pow(left, right);
+								break;
+							case "*":
+								result = left * right;
+								break;
+							case "/":
+								result = left / right;
+								break;
+							case "%":
+								result = left % right;
+								break;
+							case "+":
+								result = left + right;
+								break;
+							case "-":
+								result = left - right;
+								break;
+						}
+
 					}
+					catch (Exception ex)
+					{
+
+                        Console.WriteLine(ex.Message);
+                    }
+
 					// замена подвыражения на результат
 					expression = expression.Replace(match.Value, result.ToString());
 					match = Regex.Match(expression, item);
